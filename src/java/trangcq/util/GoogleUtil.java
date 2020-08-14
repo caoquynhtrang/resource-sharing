@@ -17,7 +17,8 @@ import trangcq.registration.RegistrationDTO;
  */
 public class GoogleUtil {
 
-    private static final String url = "http://localhost:8084/Lab03_ResourceSharing/googleLogin";
+//    private static final String url = "http://localhost:8084/Lab03_ResourceSharing/googleLogin";
+    private static final String url = "https://managing-resources-sharing.herokuapp.com/googleLogin";
     private static final String clientID = "466618921968-f3jf6dg7ov4aupnml43mkpndskeekckb.apps.googleusercontent.com";
     private static final String clientSecret = "ERu48lSuX5yskb1lbxUfSNKm";
     
