@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Lab03_ResourceSharing">
+    <Resource name="SE1402" 
+              auth="Container"
+              type="javax.sql.DataSource" 
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://ec2-52-70-15-120.compute-1.amazonaws.com:5432/d7gq5ah65dsgoi?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"
+              username="binqekuuxfzqyw" 
+              password="8abd89ab15ede1406841acc91fb69f2a08201a115c4d67c0b5b45b12e5f3d1ef" 
+              />
+</Context>

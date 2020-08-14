@@ -1,0 +1,145 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <!-- Mặc định sẽ là Dispatcher forward 
+            type="redirect" sẽ redirect
+            Ghi nhớ:
+            Dispatcher forward thì nhớ có ".jsp"
+            Redirect thì sẽ thêm action
+            html thì cứ redirect thoải mái
+        -->
+        <global-results>
+            <result name="error">error.html</result>
+        </global-results>
+        <action name="">
+            <result>login.jsp</result>
+        </action>
+        <action name="search">
+            <result type="chain">category</result>
+        </action>
+        <action name="try">
+            <result>login.jsp</result>
+        </action>
+        <!--LOGIN-->
+        <action name="login" class="trangcq.controller.LoginAction">
+            <result name="success" type="redirect">search</result>
+            <result name="fail" type="redirect">invalid.html</result>
+        </action>
+        
+        <!--Login Google-->
+        <action name="googleLogin" class="trangcq.controller.GoogleLoginAction">
+            <result name="success" type="redirect">search</result>
+        </action>
+        <!--LOGOUT -->
+        <action name="logout">
+            <result name="success" type="redirect">try</result>
+        </action>
+        <!--CREATE ACCOUNT-->
+        <action name="createAccount" class="trangcq.controller.CreateAccountAction">
+            <result name="input">createAccount.jsp</result>
+            <result name="success">email.jsp</result>
+            
+        </action>
+        <action name="register">
+            <result>createAccount.jsp</result>
+        </action>
+        <action name="codeEmail" class="trangcq.controller.SendCodeMailAction">
+            <result name="success">successEmail.html</result>
+            <result name="fail">error.html</result>
+        </action>
+        <!--Show Category-->
+        <action name="category" class="trangcq.controller.ShowCategoryAction">
+            <result name="success">search.jsp</result>
+        </action>
+        <!--Search-->
+        <action name="searchItem" class="trangcq.controller.SearchItemAction">
+            <result type="chain">category</result>
+        </action>
+        <!--BorrowItem-->
+        
+        <action name="borrowItem" class="trangcq.controller.BorrowItemAction">
+            <result type="redirect" name="success">search</result>
+        </action>
+        <action name="view">
+            <result>view.jsp</result>
+        </action>
+        <!--updateItem-->
+        <action name="updateItem" class="trangcq.controller.UpdateItemAction">
+            <result type="redirect" name="success">view</result>
+        </action>
+        <!--deleteItem-->
+        <action name="deleteItem" class="trangcq.controller.DeleteItemAction">
+            <result type="redirect" name="success">view</result>
+        </action>
+        <!--Confirm-->
+        <action name="confirm" class="trangcq.controller.ConfirmItemAction">
+            <result name="success">confirm.jsp</result>
+            <result name="fail">view.jsp</result>
+        </action>
+        <!--Search Requset History-->
+        <action name="searchRequestHistory" class="trangcq.controller.SearchRequestHistoryAction">
+            <result name="success">history.jsp</result>
+        </action>
+        
+        <!--Show HistoryRequest-->
+        <action name="history" >
+            <result name="success" type="chain">historyRequest</result>            
+        </action>
+        
+        <action name="historyRequest" class="trangcq.controller.ShowRequestHistoryAction">
+            <result name="success">history.jsp</result>            
+        </action>
+        
+        
+        <!--Delete Request History-->
+        <action name="deleteRequestHistory" class="trangcq.controller.DeleteRequestHistoryAction">
+            <result type="redirect" name="success">history</result>
+            <result type="redirect" name="fail">errorDelete.html</result>
+        </action>
+        
+        <!-- View Request Item Detail -->
+        
+        <action name="viewItemDetail" class="trangcq.controller.ShowItemDetailAction">
+            <result name="success">viewDetail.jsp</result>
+        </action>
+        
+        
+        <!--Admin- Show Status-->
+       
+        <action name="status" class="trangcq.controller.ShowStatusAction">
+            <result name="success">manage.jsp</result>
+        </action>
+        
+        <!--Admin -SearchRequest-->
+        <action name="searchRequest" class="trangcq.controller.SearchRequestAction">
+            <result name="success" type="chain">status</result>
+        </action>
+        
+        
+        <!--Admin- ShowRequest -->        
+        <action name="requests" class="trangcq.controller.ShowRequestAction">
+            <result name="success" type="chain">status</result>
+        </action>
+         
+        <!--Admin- DeleteRequest-->
+        <action name="manage">
+            <result type="chain">requests</result>
+        </action>
+        
+        <action name="deleteRequest" class="trangcq.controller.DeleteRequestAction">
+            <result type="redirect" name="success">manage</result>
+            <result type="redirect" name="fail">errorDelete.html</result>
+        </action>
+        
+        <!--Admin- AcceptRequest-->
+        <action name="acceptRequest" class="trangcq.controller.AcceptRequestAction">
+            <result type="redirect" name="success">manage</result>
+            <result name="fail" type="chain">manage</result>
+        </action>
+        
+    </package>
+</struts>
